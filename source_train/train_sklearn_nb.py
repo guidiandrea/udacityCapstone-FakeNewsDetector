@@ -34,8 +34,7 @@ if __name__ == '__main__':
     train_X = train_data.ix[:,1:]
 
     # Now use scikit-learn's decision tree classifier to train the model.
-    clf = tree.DecisionTreeClassifier(max_leaf_nodes=max_leaf_nodes)
-    clf = clf.fit(train_X, train_y)
+    clf = None
 
     # Print the coefficients of the trained classifier, and save the coefficients
     joblib.dump(clf, os.path.join(args.model_dir, "model.joblib"))
