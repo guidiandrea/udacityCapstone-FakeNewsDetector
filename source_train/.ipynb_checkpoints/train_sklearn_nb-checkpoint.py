@@ -5,7 +5,7 @@ import pandas as pd
 
 from sklearn import tree
 from sklearn.externals import joblib
-
+from sklearn.naive_bayes import MultinomialNB
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -30,11 +30,13 @@ if __name__ == '__main__':
     train_data = pd.concat(raw_data)
 
     # labels are in the first column
-    train_y = train_data.ix[:,0]
-    train_X = train_data.ix[:,1:]
+    train_y = train_data.iloc[:,0]
+    train_X = train_data.iloc[:,1:]
 
     # Now use scikit-learn's decision tree classifier to train the model.
-    clf = None
+    clf = MultinomialNB()
+    
+    clf.fit(train_X,train_y)
 
     # Print the coefficients of the trained classifier, and save the coefficients
     joblib.dump(clf, os.path.join(args.model_dir, "model.joblib"))
